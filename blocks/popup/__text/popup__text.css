@@ -1,0 +1,8 @@
+.popup__text {
+  border: 0;
+  margin: 0;
+}
+
+.popup__text:focus {
+  outline: none;
+}
