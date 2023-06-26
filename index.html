@@ -15,53 +15,53 @@
       <section class="profile">
         <img class="profile__avatar" src="./images/avatar.svg" alt="аватар">
         <div class="profile__info">
-          <p class="profile__name">Жак-Ив Кусто</p>
-          <button class="profile__edit-button"></button>
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button type="button" class="profile__edit-button"></button>
           <p class="profile__occupation">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
         <article class="element">
           <img src="./images/karachaevsk.jpg" class="element__image" alt="карачаевск">
           <div class="element__bottom">
             <h2 class="element__heading">Карачаевск</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </div>
         </article>
         <article class="element">
           <img src="./images/elbrus.jpg" class="element__image" alt="эльбрус">
           <div class="element__bottom">
             <h2 class="element__heading">Гора Эльбрус</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </div>
         </article>
         <article class="element">
           <img src="./images/dombai.jpg" class="element__image" alt="домбай">
           <div class="element__bottom">
             <h2 class="element__heading">Домбай</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </div>
         </article>
         <article class="element">
           <img src="./images/elbrus.jpg" class="element__image" alt="эльбрус">
           <div class="element__bottom">
             <h2 class="element__heading">Гора Эльбрус</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </div>
         </article>
         <article class="element">
           <img src="./images/dombai.jpg" class="element__image" alt="домбай">
           <div class="element__bottom">
             <h2 class="element__heading">Домбай</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </div>
         </article>
         <article class="element">
           <img src="./images/karachaevsk.jpg" class="element__image" alt="карачаевск">
           <div class="element__bottom">
             <h2 class="element__heading">Карачаево-Черкессия</h2>
-            <button class="element__like"></button>
+            <button type="button" class="element__like"></button>
           </div>
         </article>
       </section>
@@ -71,18 +71,16 @@
     </footer>
   </div>
   <div class="popup">
-    <button class="popup__close-button"></button>
-    <form class="popup__container">
-      <h2 class="popup__heading">Редактировать профиль</h2>
-      <fieldset class="popup__field">
-        <input type='text' class='popup__text popup__name' value='Жак-Ив Кусто'>
-      </fieldset>
-      <fieldset class="popup__field">
-        <input type='text' class='popup__text popup__occupation' value='Исследователь океана'>
-      </fieldset>
-      <button class="popup__save-button">Сохранить</button>
-    </form>
+    <div class="popup__container">
+      <button type="button" class="popup__close-button"></button>
+      <form class="popup__form" name="popup__form_profile">
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <input type="text" class="popup__text" name="popup__form_profile_name">
+        <input type="text" class="popup__text" name="popup__form_profile_occupation">
+        <button type="submit" class="popup__save-button">Сохранить</button>
+      </form>
+    </div>
   </div>
-  <script src="./script.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 </html>

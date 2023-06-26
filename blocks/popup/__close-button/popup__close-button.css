@@ -7,10 +7,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-color: transparent;
-  transform: translate(239px, -8px);
   transition: opacity 0.2s ease;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(40px, -40px);
 }
-
 
 .popup__close-button:hover {
   opacity: 0.6;
@@ -20,6 +22,6 @@
   .popup__close-button {
     width: 20px;
     height: 20px;
-    transform: translate(131px, -16px);
+    transform: translate(0, -36px);
   }
 }
