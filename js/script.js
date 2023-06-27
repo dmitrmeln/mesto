@@ -11,8 +11,8 @@ let formSaveButton = formElement.querySelector('.popup__save-button');
 
 function openPopup() {
   popup.classList.add('popup_opened');
-  formName.setAttribute('value', profileName.textContent);
-  formOccupation.setAttribute('value', profileOccupation.textContent);
+  formName.value = profileName.textContent;
+  formOccupation.value = profileOccupation.textContent;
 };
 
 function closePopup() {
