@@ -6,7 +6,7 @@ const profileAddButton = pageContent.querySelector(".profile__add-button");
 
 const elementsContainer = pageContent.querySelector(".elements");
 
-const editPopup = document.querySelector("#popup__edit");
+const editPopup = document.querySelector(".popup__edit");
 const editPopupCloseButton = editPopup.querySelector(".popup__close-button");
 const editFormElement = editPopup.querySelector(".popup__container");
 const editFormFirstInput = editFormElement.querySelector(
@@ -17,7 +17,7 @@ const editFormSecondInput = editFormElement.querySelector(
 );
 const editFormSaveButton = editFormElement.querySelector(".popup__save-button");
 
-const addPopup = document.querySelector("#popup__add");
+const addPopup = document.querySelector(".popup__add");
 const addPopupCloseButton = addPopup.querySelector(".popup__close-button");
 const addFormElement = addPopup.querySelector(".popup__container");
 const addFormFirstInput = addFormElement.querySelector(
@@ -28,7 +28,7 @@ const addFormSecondInput = addFormElement.querySelector(
 );
 const addFormSaveButton = addFormElement.querySelector(".popup__save-button");
 
-const imagePopup = document.querySelector("#popup__open-image");
+const imagePopup = document.querySelector(".popup__open-image");
 const imagePopupCloseButton = imagePopup.querySelector(".popup__close-button");
 
 const initialCards = [
