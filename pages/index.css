@@ -42,11 +42,23 @@
 
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 
+@import url(../blocks/popup/__open-image/popup__open-image.css);
+
+@import url(../blocks/popup/__image-container/popup__image-container.css);
+
+@import url(../blocks/popup/__image-figure/popup__image-figure.css);
+
+@import url(../blocks/popup/__image/popup__image.css);
+
+@import url(../blocks/popup/__image-caption/popup__image-caption.css);
+
 @import url(../blocks/elements/elements.css);
 
 @import url(../blocks/element/element.css);
 
 @import url(../blocks/element/__image/element__image.css);
+
+@import url(../blocks/element/__trash/element__trash.css);
 
 @import url(../blocks/element/__bottom/element__bottom.css);
 
