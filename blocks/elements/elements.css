@@ -2,6 +2,7 @@
   display: grid;
   margin: auto;
   max-width: 100%;
+  min-height: 45vh;
   padding-top: 51px;
   grid-template-columns: repeat(auto-fit, 282px);
   grid-template-rows: repeat(auto-fit, 361px);
