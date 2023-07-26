@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
-  visibility: hidden;
   opacity: 0;
+  visibility: hidden;
   transition: visibility 0.3s, opacity 0.3s linear;
 }
