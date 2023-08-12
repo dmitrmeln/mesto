@@ -45,7 +45,10 @@ const validationConfig = {
 
 const popupList = Array.from(document.querySelectorAll(".popup"));
 
-const profileFormValidator = new FormValidator(validationConfig, formPopupProfile);
+const profileFormValidator = new FormValidator(
+  validationConfig,
+  formPopupProfile
+);
 const cardFormValidator = new FormValidator(validationConfig, formPopupCard);
 
 initialCards.forEach((item) => {

@@ -6,9 +6,9 @@ class Card {
 
   _getTemplate() {
     const cardTemplate = document
-    .querySelector("#element-template")
-    .content.querySelector(".element")
-    .cloneNode(true)
+      .querySelector("#element-template")
+      .content.querySelector(".element")
+      .cloneNode(true);
 
     return cardTemplate;
   }
@@ -29,7 +29,7 @@ class Card {
   }
 
   getView() {
-    this._newCard = this._getTemplate()
+    this._newCard = this._getTemplate();
 
     const cardImage = this._newCard.querySelector(".element__image");
     const cardHeading = this._newCard.querySelector(".element__heading");
@@ -38,8 +38,8 @@ class Card {
     cardHeading.textContent = this._name;
     cardImage.alt = this._name;
 
-    this._handleLikeBtn()
-    this._handleTrashBtn()
+    this._handleLikeBtn();
+    this._handleTrashBtn();
 
     return this._newCard;
   }
