@@ -8,31 +8,30 @@ const profileOccupation = document.querySelector(".profile__occupation");
 const profileEditButton = pageContent.querySelector(".profile__edit-button");
 const profileAddButton = pageContent.querySelector(".profile__add-button");
 
-const elementsContainer = pageContent.querySelector(".elements");
+const cardsContainer = pageContent.querySelector(".cards");
+const cardTemplate = document.querySelector("#card-template");
 
-const popupProfile = document.querySelector(".popup_type_edit");
-const formPopupProfile = popupProfile.querySelector(".popup__form");
-const firstInputPopupProfile = formPopupProfile.querySelector(
+const profilePopup = document.querySelector(".popup_type_edit");
+const profileForm = document.forms["profile-form"];
+const profileFormName = profileForm.querySelector(
   '.popup__input[name="popup__name"]'
 );
-const secondInputPopupProfile = formPopupProfile.querySelector(
+const profileFormOccupation = profileForm.querySelector(
   '.popup__input[name="popup__occupation"]'
 );
 
-const popupCard = document.querySelector(".popup_type_add");
-const formPopupCard = popupCard.querySelector(".popup__form");
-const firstInputPopupCard = formPopupCard.querySelector(
+const cardPopup = document.querySelector(".popup_type_add");
+const cardForm = document.forms["card-form"];
+const cardFormName = cardForm.querySelector(
   '.popup__input[name="popup__card-name"]'
 );
-const secondInputPopupCard = formPopupCard.querySelector(
+const cardFormLink = cardForm.querySelector(
   '.popup__input[name="popup__card-link"]'
 );
 
-const popupBigImage = document.querySelector(".popup_type_image");
-const picturePopupBigImage = popupBigImage.querySelector(".popup__image");
-const captionPopupBigImage = popupBigImage.querySelector(
-  ".popup__image-caption"
-);
+const imagePopup = document.querySelector(".popup_type_image");
+const imagePopupPicture = imagePopup.querySelector(".popup__image");
+const imagePopupCaption = imagePopup.querySelector(".popup__image-caption");
 
 const validationConfig = {
   formSelector: ".popup__form",
@@ -45,16 +44,51 @@ const validationConfig = {
 
 const popupList = Array.from(document.querySelectorAll(".popup"));
 
-const profileFormValidator = new FormValidator(
-  validationConfig,
-  formPopupProfile
-);
-const cardFormValidator = new FormValidator(validationConfig, formPopupCard);
+const formValidators = {};
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute("name");
+
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+function createCard(item) {
+  const cardElement = new Card(
+    item.name,
+    item.link,
+    cardTemplate,
+    handleCardClick
+  );
+  return cardElement.getView();
+}
 
 initialCards.forEach((item) => {
-  const newCard = new Card(item.name, item.link);
-  elementsContainer.prepend(newCard.getView());
+  const newCard = createCard(item);
+  cardsContainer.prepend(newCard);
 });
+
+function handleCardFormCreate(evt) {
+  evt.preventDefault();
+
+  const renderCard = {};
+  const cardName = cardFormName.value;
+  const cardLink = cardFormLink.value;
+
+  renderCard["name"] = cardName;
+  renderCard["link"] = cardLink;
+
+  const newCard = createCard(renderCard);
+
+  cardsContainer.prepend(newCard);
+
+  closePopup(cardPopup);
+  cardForm.reset();
+}
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -66,26 +100,20 @@ function closePopup(popup) {
   document.removeEventListener("keydown", closeByEscape);
 }
 
-function handleFormSubmit(evt) {
-  evt.preventDefault();
-
-  profileName.textContent = firstInputPopupProfile.value;
-  profileOccupation.textContent = secondInputPopupProfile.value;
-
-  closePopup(popupProfile);
+function handleCardClick(name, link) {
+  imagePopupPicture.alt = name;
+  imagePopupCaption.textContent = name;
+  imagePopupPicture.src = link;
+  openPopup(imagePopup);
 }
 
-function handleFormCreate(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  const newCard = new Card(
-    firstInputPopupCard.value,
-    secondInputPopupCard.value
-  );
-  elementsContainer.prepend(newCard.getView());
+  profileName.textContent = profileFormName.value;
+  profileOccupation.textContent = profileFormOccupation.value;
 
-  closePopup(popupCard);
-  formPopupCard.reset();
+  closePopup(profilePopup);
 }
 
 function closeByEscape(evt) {
@@ -96,21 +124,21 @@ function closeByEscape(evt) {
 }
 
 profileEditButton.addEventListener("click", () => {
-  openPopup(popupProfile);
-  firstInputPopupProfile.value = profileName.textContent;
-  secondInputPopupProfile.value = profileOccupation.textContent;
-  profileFormValidator.hideErrorsCheckButton();
+  openPopup(profilePopup);
+  profileFormName.value = profileName.textContent;
+  profileFormOccupation.value = profileOccupation.textContent;
+  formValidators["profile-form"].resetValidation();
 });
 
 profileAddButton.addEventListener("click", () => {
-  formPopupCard.reset();
-  openPopup(popupCard);
-  cardFormValidator.hideErrorsCheckButton();
+  cardForm.reset();
+  openPopup(cardPopup);
+  formValidators["card-form"].resetValidation();
 });
 
-formPopupProfile.addEventListener("submit", handleFormSubmit);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
 
-formPopupCard.addEventListener("submit", handleFormCreate);
+cardForm.addEventListener("submit", handleCardFormCreate);
 
 popupList.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
@@ -124,14 +152,4 @@ popupList.forEach((popup) => {
   });
 });
 
-elementsContainer.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("element__image")) {
-    openPopup(popupBigImage);
-    picturePopupBigImage.src = evt.target.src;
-    picturePopupBigImage.alt = evt.target.alt;
-    captionPopupBigImage.textContent = evt.target.alt;
-  }
-});
-
-profileFormValidator.enableValidation();
-cardFormValidator.enableValidation();
+enableValidation(validationConfig);

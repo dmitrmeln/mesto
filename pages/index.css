@@ -60,21 +60,21 @@
 
 @import url(../blocks/popup/_opened/popup_opened.css);
 
-@import url(../blocks/elements/elements.css);
+@import url(../blocks/cards/cards.css);
 
-@import url(../blocks/element/element.css);
+@import url(../blocks/card/card.css);
 
-@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/card/__image/card__image.css);
 
-@import url(../blocks/element/__trash/element__trash.css);
+@import url(../blocks/card/__trash/card__trash.css);
 
-@import url(../blocks/element/__bottom/element__bottom.css);
+@import url(../blocks/card/__bottom/card__bottom.css);
 
-@import url(../blocks/element/__heading/element__heading.css);
+@import url(../blocks/card/__heading/card__heading.css);
 
-@import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/card/__like/card__like.css);
 
-@import url(../blocks/element/__like/_active/element__like_active.css);
+@import url(../blocks/card/__like/_active/card__like_active.css);
 
 @import url(../blocks/footer/footer.css);
 

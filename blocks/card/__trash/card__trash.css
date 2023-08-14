@@ -1,4 +1,4 @@
-.element__trash {
+.card__trash {
   width: 18px;
   height: 19px;
   border: 0;
@@ -13,7 +13,7 @@
   right: 20px;
 }
 
-.element__trash:hover {
+.card__trash:hover {
   opacity: 0.5;
 }
 

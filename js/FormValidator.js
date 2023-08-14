@@ -1,11 +1,13 @@
 class FormValidator {
-  constructor(config, form) {
+  constructor(config, formElement) {
     this._config = config;
-    this._form = form;
+    this._formElement = formElement;
     this._inputs = Array.from(
-      this._form.querySelectorAll(this._config.inputSelector)
+      this._formElement.querySelectorAll(this._config.inputSelector)
     );
-    this._button = this._form.querySelector(this._config.submitButtonSelector);
+    this._button = this._formElement.querySelector(
+      this._config.submitButtonSelector
+    );
   }
 
   enableValidation() {
@@ -39,14 +41,14 @@ class FormValidator {
 
   _showInputError(input) {
     input.classList.add(this._config.inputErrorClass);
-    const span = this._form.querySelector(`.${input.id}-error`);
+    const span = this._formElement.querySelector(`.${input.id}-error`);
     span.textContent = input.validationMessage;
     span.classList.add(this._config.errorClass);
   }
 
   _hideInputError(input) {
     input.classList.remove(this._config.inputErrorClass);
-    const span = this._form.querySelector(`.${input.id}-error`);
+    const span = this._formElement.querySelector(`.${input.id}-error`);
     span.textContent = "";
     span.classList.remove(this._config.errorClass);
   }
@@ -59,7 +61,7 @@ class FormValidator {
     }
   }
 
-  hideErrorsCheckButton() {
+  resetValidation() {
     this._toggleButtonState();
 
     this._inputs.forEach((input) => {

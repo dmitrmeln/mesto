@@ -1,4 +1,4 @@
-.element__heading {
+.card__heading {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
