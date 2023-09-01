@@ -9,8 +9,8 @@ class Section {
     this._container.prepend(element);
   }
 
-  renderer() {
-    this._renderer(this._items)
+  renderer(data) {
+    this._renderer(data)
   }
 
   renderItems(cards) {

@@ -77,30 +77,25 @@ function createCardElement(data) {
   return cardElement
 }
 
-function createCard(data) {
-  const createCard = new Section(
-    {
-      items: data,
-      renderer: (data) => {
-        const newCard = createCardElement(data)
-        createCard.addItem(newCard);
-      },
+const createCard = new Section(
+  {
+    items: initialCards,
+    renderer: (data) => {
+      const newCard = createCardElement(data)
+      createCard.addItem(newCard);
     },
-    cardsContainer
-  );
-
-  return createCard
-}
+  },
+  cardsContainer
+);
 
 const popupWithCardForm = new PopupWithForm(
   cardPopup,
   (data) => {
-    const newCreatedCard =  createCard(data);
-    newCreatedCard.renderer()
+    createCard.renderer(data)
     popupWithCardForm.close();
   });
 
-createCard().renderItems(initialCards)
+createCard.renderItems(initialCards)
 
 
 profileEditButton.addEventListener("click", () => {
