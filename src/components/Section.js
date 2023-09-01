@@ -9,8 +9,12 @@ class Section {
     this._container.prepend(element);
   }
 
-  renderItems() {
-    this._items.forEach((item) => {
+  renderer() {
+    this._renderer(this._items)
+  }
+
+  renderItems(cards) {
+    cards.forEach((item) => {
       this._renderer(item);
     });
   }

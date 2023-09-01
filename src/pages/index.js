@@ -1,11 +1,11 @@
 import '../pages/index.css';
-import initialCards from "./initial-cards.js";
-import FormValidator from "./FormValidator.js";
-import Card from "./Card.js";
-import Section from "./Section.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
+import initialCards from "../utils/initial-cards";
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 const pageContent = document.querySelector(".page__content");
 const profileName = pageContent.querySelector(".profile__name");
@@ -26,7 +26,6 @@ const profileFormOccupation = profileForm.querySelector(
 );
 
 const cardPopup = document.querySelector(".popup_type_add");
-const cardForm = document.forms["card-form"];
 
 const imagePopup = document.querySelector(".popup_type_image");
 
@@ -67,60 +66,53 @@ const popupWithProfileForm = new PopupWithForm(
     }
   );
 
-const addInitialCards = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = new Card(
-        item.name,
-        item.link,
-        cardTemplate,
-        (name, link) => {popupWithImage.open(name, link)}
-      );
+function createCardElement(data) {
+  const card = new Card(
+    {name: data.name, link: data.link},
+    cardTemplate,
+    (name, link) => {popupWithImage.open(name, link)}
+  );
 
-      const cardElement = card.getView();
-      addInitialCards.addItem(cardElement);
+  const cardElement = card.getView();
+  return cardElement
+}
+
+function createCard(data) {
+  const createCard = new Section(
+    {
+      items: data,
+      renderer: (data) => {
+        const newCard = createCardElement(data)
+        createCard.addItem(newCard);
+      },
     },
-  },
-  cardsContainer
-);
+    cardsContainer
+  );
 
-addInitialCards.renderItems();
+  return createCard
+}
 
 const popupWithCardForm = new PopupWithForm(
   cardPopup,
   (data) => {
-    const createCard = new Section(
-      {
-        items: [data],
-        renderer: () => {
-          const card = new Card(
-            data['popup__card-name'],
-            data['popup__card-link'],
-            cardTemplate,
-            (name, link) => {popupWithImage.open(name, link)}
-          );
-
-          const cardElement = card.getView();
-          createCard.addItem(cardElement);
-        },
-      },
-      cardsContainer
-    );
-
-    createCard.renderItems();
+    const newCreatedCard =  createCard(data);
+    newCreatedCard.renderer()
     popupWithCardForm.close();
   });
 
+createCard().renderItems(initialCards)
+
+
 profileEditButton.addEventListener("click", () => {
+  const profileInfo = userInfo.getUserInfo()
+
   popupWithProfileForm.open();
-  profileFormName.value = userInfo.getUserInfo()["name"];
-  profileFormOccupation.value = userInfo.getUserInfo()["occupation"];
+  profileFormName.value = profileInfo["name"];
+  profileFormOccupation.value = profileInfo["occupation"];
   formValidators["profile-form"].resetValidation();
 });
 
 profileAddButton.addEventListener("click", () => {
-  cardForm.reset();
   popupWithCardForm.open();
   formValidators["card-form"].resetValidation();
 });

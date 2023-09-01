@@ -1,9 +1,12 @@
 class Card {
-  constructor(name, link, cardTemplate, handleCardClick) {
+  constructor({name, link}, cardTemplate, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
+    this._likeActivation = this._likeActivation.bind(this)
+    this._deleteCard = this._deleteCard.bind(this)
+    this._cardClick = this._cardClick.bind(this)
   }
 
   _generateCard() {
@@ -19,19 +22,23 @@ class Card {
     return cardElement;
   }
 
+  _likeActivation() {
+    this._likeButton.classList.toggle("card__like_active");
+  }
+
+  _deleteCard() {
+    this._newCard.remove();
+    this._newCard = null;
+  }
+
+  _cardClick() {
+    this._handleCardClick(this._name, this._link);
+  }
+
   _setEventListeners() {
-    this._likeButton.addEventListener("click", function () {
-      this.classList.toggle("card__like_active");
-    });
-
-    this._deleteButton.addEventListener("click", () => {
-      this._newCard.remove();
-      this._newCard = null;
-    });
-
-    this._cardImage.addEventListener("click", () => {
-      this._handleCardClick(this._name, this._link);
-    });
+    this._likeButton.addEventListener("click", this._likeActivation);
+    this._deleteButton.addEventListener("click", this._deleteCard);
+    this._cardImage.addEventListener("click", this._cardClick);
   }
 
   getView() {
