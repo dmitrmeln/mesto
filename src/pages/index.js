@@ -1,4 +1,4 @@
-import '../pages/index.css';
+import "../pages/index.css";
 import initialCards from "../utils/initial-cards";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
@@ -58,48 +58,44 @@ const userInfo = new UserInfo({
   occupation: profileOccupation,
 });
 
-const popupWithProfileForm = new PopupWithForm(
-    profilePopup,
-    (data) => {
-      userInfo.setUserInfo(data);
-      popupWithProfileForm.close();
-    }
-  );
+const popupWithProfileForm = new PopupWithForm(profilePopup, (data) => {
+  userInfo.setUserInfo(data);
+  popupWithProfileForm.close();
+});
 
 function createCardElement(data) {
   const card = new Card(
-    {name: data.name, link: data.link},
+    { name: data.name, link: data.link },
     cardTemplate,
-    (name, link) => {popupWithImage.open(name, link)}
+    (name, link) => {
+      popupWithImage.open(name, link);
+    }
   );
 
   const cardElement = card.getView();
-  return cardElement
+  return cardElement;
 }
 
 const createCard = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      const newCard = createCardElement(data)
+      const newCard = createCardElement(data);
       createCard.addItem(newCard);
     },
   },
   cardsContainer
 );
 
-const popupWithCardForm = new PopupWithForm(
-  cardPopup,
-  (data) => {
-    createCard.renderer(data)
-    popupWithCardForm.close();
-  });
+const popupWithCardForm = new PopupWithForm(cardPopup, (data) => {
+  createCard.renderer(data);
+  popupWithCardForm.close();
+});
 
-createCard.renderItems(initialCards)
-
+createCard.renderItems(initialCards);
 
 profileEditButton.addEventListener("click", () => {
-  const profileInfo = userInfo.getUserInfo()
+  const profileInfo = userInfo.getUserInfo();
 
   popupWithProfileForm.open();
   profileFormName.value = profileInfo["name"];
@@ -113,7 +109,7 @@ profileAddButton.addEventListener("click", () => {
 });
 
 [popupWithImage, popupWithCardForm, popupWithProfileForm].forEach((element) => {
-  element.setEventListeners()
+  element.setEventListeners();
 });
 
 enableValidation(validationConfig);

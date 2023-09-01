@@ -1,12 +1,12 @@
 class Card {
-  constructor({name, link}, cardTemplate, handleCardClick) {
+  constructor({ name, link }, cardTemplate, handleCardClick) {
     this._name = name;
     this._link = link;
     this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
-    this._likeActivation = this._likeActivation.bind(this)
-    this._deleteCard = this._deleteCard.bind(this)
-    this._cardClick = this._cardClick.bind(this)
+    this._likeActivation = this._likeActivation.bind(this);
+    this._deleteCard = this._deleteCard.bind(this);
+    this._cardClick = this._cardClick.bind(this);
   }
 
   _generateCard() {

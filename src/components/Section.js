@@ -10,7 +10,7 @@ class Section {
   }
 
   renderer(data) {
-    this._renderer(data)
+    this._renderer(data);
   }
 
   renderItems(cards) {
