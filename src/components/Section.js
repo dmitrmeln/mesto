@@ -11,10 +11,11 @@ class Section {
 
   renderer(data) {
     this._renderer(data);
+    this._items.push(data);
   }
 
   renderItems(cards) {
-    cards.forEach((item) => {
+    cards.reverse().forEach((item) => {
       this._renderer(item);
     });
   }

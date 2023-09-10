@@ -1,12 +1,24 @@
 class Card {
-  constructor({ name, link }, cardTemplate, handleCardClick) {
+  constructor(
+    { name, link, _id },
+    cardTemplate,
+    handleCardClick,
+    handleCardDeleteBtn,
+    handleLikeClick,
+    handleUnlikeClick
+  ) {
     this._name = name;
     this._link = link;
+    this._id = _id;
     this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
+    this._handleCardDeleteBtn = handleCardDeleteBtn;
+    this._handleLikeClick = handleLikeClick;
+    this._handleUnlikeClick = handleUnlikeClick;
     this._likeActivation = this._likeActivation.bind(this);
-    this._deleteCard = this._deleteCard.bind(this);
+    this._handleClickBtnDelete = this._handleClickBtnDelete.bind(this);
     this._cardClick = this._cardClick.bind(this);
+    this._handleClickBtnDelete = this._handleClickBtnDelete.bind(this);
   }
 
   _generateCard() {
@@ -24,11 +36,15 @@ class Card {
 
   _likeActivation() {
     this._likeButton.classList.toggle("card__like_active");
+    if (this._likeButton.classList.contains("card__like_active")) {
+      this._handleLikeClick(this._id);
+    } else {
+      this._handleUnlikeClick(this._id);
+    }
   }
 
-  _deleteCard() {
-    this._newCard.remove();
-    this._newCard = null;
+  _handleClickBtnDelete() {
+    this._handleCardDeleteBtn(this._id);
   }
 
   _cardClick() {
@@ -37,7 +53,7 @@ class Card {
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", this._likeActivation);
-    this._deleteButton.addEventListener("click", this._deleteCard);
+    this._deleteButton.addEventListener("click", this._handleClickBtnDelete);
     this._cardImage.addEventListener("click", this._cardClick);
   }
 
@@ -51,6 +67,15 @@ class Card {
     this._setEventListeners();
 
     return this._newCard;
+  }
+
+  removeCard() {
+    this._newCard.remove();
+    this._newCard = null;
+  }
+
+  deleteBtnActivation() {
+    this._deleteButton.classList.add("card__trash_active");
   }
 }
 
