@@ -6,21 +6,21 @@ class PopupConfirmation extends Popup {
     this._card = card;
     this._handleConfirmBtn = handleConfirmBtn;
     this._confirmButton = this._popup.querySelector(".popup__button");
-    this._confirmationClick = this._confirmationClick.bind(this);
+    this._handleConfirmation = this._handleConfirmation.bind(this);
   }
 
-  _confirmationClick() {
+  _handleConfirmation() {
     this._handleConfirmBtn(this._card);
   }
 
-  setEventListeners() {
-    super.setEventListeners();
-    this._confirmButton.addEventListener("click", this._confirmationClick);
+  open() {
+    super.open();
+    this._confirmButton.addEventListener("click", this._handleConfirmation);
   }
 
   close() {
     super.close();
-    this._confirmButton.removeEventListener("click", this._confirmationClick);
+    this._confirmButton.removeEventListener("click", this._handleConfirmation);
   }
 }
 

@@ -1,4 +1,4 @@
-.profile__occupation {
+.profile__about {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  .profile__occupation {
+  .profile__about {
     font-size: 14px;
     justify-self: center;
     grid-area: 2 / span 2;

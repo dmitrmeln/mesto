@@ -19,7 +19,7 @@
         <div class="profile__info">
           <h1 class="profile__name"></h1>
           <button type="button" class="profile__edit-button"></button>
-          <p class="profile__occupation"></p>
+          <p class="profile__about"></p>
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
@@ -37,10 +37,10 @@
       <button type="button" class="popup__close-button"></button>
       <form class="popup__form" name="profile-form" novalidate>
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <input type="text" class="popup__input" id="popup__name" name="popup__name" minlength="2" maxlength="40" required>
+        <input type="text" class="popup__input" id="popup__name" name="name" minlength="2" maxlength="40" required>
         <span class="popup__error popup__name-error"></span>
-        <input type="text" class="popup__input" id="popup__occupation" name="popup__occupation" minlength="2" maxlength="200" required>
-        <span class="popup__error popup__occupation-error"></span>
+        <input type="text" class="popup__input" id="popup__about" name="about" minlength="2" maxlength="200" required>
+        <span class="popup__error popup__about-error"></span>
         <button type="submit" class="popup__button">Сохранить</button>
       </form>
     </div>

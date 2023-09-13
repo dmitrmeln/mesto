@@ -1,22 +1,25 @@
 class UserInfo {
-  constructor({ name, occupation, avatar }) {
+  constructor({ name, about, avatar, _id }) {
     this._name = name;
-    this._occupation = occupation;
+    this._about = about;
     this._avatar = avatar;
+    this._id = _id;
   }
 
   getUserInfo() {
     return {
       name: this._name.textContent,
-      occupation: this._occupation.textContent,
+      about: this._about.textContent,
       avatar: this._avatar.src,
-      id: this._id
+      id: this._id,
     };
   }
 
-  setUserInfo(data) {
-    this._name.textContent = data.popup__name;
-    this._occupation.textContent = data.popup__occupation;
+  setUserInfo({ name, about, avatar, _id }) {
+    this._name.textContent = name;
+    this._about.textContent = about;
+    this._avatar.src = avatar;
+    this._id = _id;
   }
 }
 
